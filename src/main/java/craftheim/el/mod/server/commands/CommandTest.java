@@ -32,7 +32,7 @@ public class CommandTest extends CommandBase {
             return;
         }
 
-        ICapabilityBank bank = player.getCapability(CapabilityBank.DefaultProvider.CAP, null);
+        ICapabilityBank bank = player.getEntityWorld().getCapability(CapabilityBank.DefaultProvider.CAP, null);
         if(bank == null)
             return;
 

@@ -1,6 +1,6 @@
 package craftheim.el.mod;
 
-import craftheim.el.common.capabilities.Capabilities;
+import craftheim.el.mod.common.capabilities.Capabilities;
 import craftheim.el.mod.server.commands.CommandTest;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
