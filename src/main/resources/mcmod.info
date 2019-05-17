@@ -1,0 +1,14 @@
+[{
+  "modid": "enderlibre",
+  "name": "EnderLibre",
+  "description": "Online/offline store & economy mechanics into Minecraft",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "https://github.com/craftheim/EnderLibre",
+  "updateUrl": "",
+  "authorList": ["Luchong", "Desv"],
+  "credits": "Pascal",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}]
