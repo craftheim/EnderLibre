@@ -1,4 +1,4 @@
-package craftheim.el.server.commands;
+package craftheim.el.mod.server.commands;
 
 import craftheim.el.common.capabilities.CapabilityBank;
 import craftheim.el.common.capabilities.ICapabilityBank;
@@ -8,7 +8,6 @@ import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.text.TextComponentString;
-import net.minecraft.world.World;
 
 public class CommandTest extends CommandBase {
 
