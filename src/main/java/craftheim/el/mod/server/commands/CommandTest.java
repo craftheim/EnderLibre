@@ -1,7 +1,7 @@
 package craftheim.el.mod.server.commands;
 
-import craftheim.el.common.capabilities.CapabilityBank;
-import craftheim.el.common.capabilities.ICapabilityBank;
+import craftheim.el.mod.common.capabilities.CapabilityBank;
+import craftheim.el.mod.common.capabilities.ICapabilityBank;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommandSender;
@@ -32,7 +32,7 @@ public class CommandTest extends CommandBase {
             return;
         }
 
-        ICapabilityBank bank = player.getEntityWorld().getCapability(CapabilityBank.DefaultProvider.CAP, null);
+        ICapabilityBank bank = player.getCapability(CapabilityBank.DefaultProvider.CAP, null);
         if(bank == null)
             return;
 

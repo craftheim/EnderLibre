@@ -1,4 +1,4 @@
-package craftheim.el.common.capabilities;
+package craftheim.el.mod.common.capabilities;
 
 import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTPrimitive;

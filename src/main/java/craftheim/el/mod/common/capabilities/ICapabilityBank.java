@@ -1,4 +1,4 @@
-package craftheim.el.common.capabilities;
+package craftheim.el.mod.common.capabilities;
 
 public interface ICapabilityBank {
     int get();
