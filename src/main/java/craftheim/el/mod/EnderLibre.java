@@ -1,4 +1,4 @@
-package craftheim.el;
+package craftheim.el.mod;
 
 import craftheim.el.common.capabilities.Capabilities;
 import craftheim.el.mod.server.commands.CommandTest;

@@ -1,8 +1,7 @@
 package craftheim.el.common.events;
 
-import craftheim.el.EnderLibre;
+import craftheim.el.mod.EnderLibre;
 import craftheim.el.common.capabilities.CapabilityBank;
-import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
