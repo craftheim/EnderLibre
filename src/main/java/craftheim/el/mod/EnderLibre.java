@@ -1,7 +1,6 @@
 package craftheim.el.mod;
 
-import craftheim.el.common.capabilities.Capabilities;
-import craftheim.el.mod.server.commands.CommandTest;
+import craftheim.el.mod.server.commands.CommandEnderLibre;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -18,7 +17,7 @@ public class EnderLibre {
 
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {
-        Capabilities.init();
+
     }
 
     @EventHandler
@@ -33,6 +32,6 @@ public class EnderLibre {
 
     @EventHandler
     public void serverStarting(FMLServerStartingEvent event) {
-        event.registerServerCommand(new CommandTest());
+        event.registerServerCommand(new CommandEnderLibre());
     }
 }
