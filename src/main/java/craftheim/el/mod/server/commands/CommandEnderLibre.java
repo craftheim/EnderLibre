@@ -2,9 +2,9 @@ package craftheim.el.mod.server.commands;
 
 import com.mojang.authlib.GameProfile;
 import craftheim.el.mod.server.data.Bank;
+import craftheim.el.mod.server.data.GlobalData;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.server.management.PlayerProfileCache;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraftforge.server.command.CommandTreeBase;
 
@@ -20,13 +20,10 @@ public class CommandEnderLibre extends CommandTreeBase {
                 }
 
                 GameProfile gp = server.getPlayerProfileCache().getGameProfileForUsername(args[0]);
-                if(gp == null) {
-                    sender.sendMessage(new TextComponentString("Algo salio mal, no me hackees"));
-                    return;
-                }
 
-                Bank bank = Bank.getInstance(server.getEntityWorld());
-                sender.sendMessage(new TextComponentString("Re bien anduvo. Tu platita: " + bank.get(gp.getId()) + " weeblons"));
+                Bank bank = GlobalData.getInstance(server.getEntityWorld()).getBank();
+
+                sender.sendMessage(new TextComponentString("Re bien anduvo. La platita de "+gp.getName()+": " + bank.get(gp.getId()) + " weeblons"));
             }
         }));
 
@@ -52,12 +49,8 @@ public class CommandEnderLibre extends CommandTreeBase {
                 }
 
                 GameProfile gp = server.getPlayerProfileCache().getGameProfileForUsername(args[0]);
-                if(gp == null) {
-                    sender.sendMessage(new TextComponentString("Algo salio mal, no me hackees"));
-                    return;
-                }
 
-                Bank bank = Bank.getInstance(server.getEntityWorld());
+                Bank bank = GlobalData.getInstance(server.getEntityWorld()).getBank();
                 bank.give(gp.getId(), amount);
 
                 sender.sendMessage(new TextComponentString("Pronto"));
@@ -86,12 +79,8 @@ public class CommandEnderLibre extends CommandTreeBase {
                 }
 
                 GameProfile gp = server.getPlayerProfileCache().getGameProfileForUsername(args[0]);
-                if(gp == null) {
-                    sender.sendMessage(new TextComponentString("Algo salio mal, no me hackees"));
-                    return;
-                }
 
-                Bank bank = Bank.getInstance(server.getEntityWorld());
+                Bank bank = GlobalData.getInstance(server.getEntityWorld()).getBank();
                 bank.take(gp.getId(), amount);
 
                 sender.sendMessage(new TextComponentString("Pronto"));
@@ -115,12 +104,8 @@ public class CommandEnderLibre extends CommandTreeBase {
                 }
 
                 GameProfile gp = server.getPlayerProfileCache().getGameProfileForUsername(args[0]);
-                if(gp == null) {
-                    sender.sendMessage(new TextComponentString("Algo salio mal, no me hackees"));
-                    return;
-                }
 
-                Bank bank = Bank.getInstance(server.getEntityWorld());
+                Bank bank = GlobalData.getInstance(server.getEntityWorld()).getBank();
                 bank.set(gp.getId(), amount);
 
                 sender.sendMessage(new TextComponentString("Pronto"));
@@ -143,7 +128,7 @@ public class CommandEnderLibre extends CommandTreeBase {
                     return;
                 }
 
-                Bank bank = Bank.getInstance(server.getEntityWorld());
+                Bank bank = GlobalData.getInstance(server.getEntityWorld()).getBank();
                 bank.setAll(amount);
 
                 sender.sendMessage(new TextComponentString("Pronto"));
@@ -158,7 +143,4 @@ public class CommandEnderLibre extends CommandTreeBase {
 
     @Override
     public String getUsage(ICommandSender sender) { return "/enderlibre"; }
-
-    @Override
-    public boolean checkPermission(MinecraftServer server, ICommandSender sender) { return true; }
 }

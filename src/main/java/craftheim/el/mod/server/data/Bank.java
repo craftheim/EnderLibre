@@ -1,95 +1,77 @@
 package craftheim.el.mod.server.data;
 
+import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.world.World;
-import net.minecraft.world.storage.MapStorage;
-import net.minecraft.world.storage.WorldSavedData;
+import net.minecraftforge.common.util.INBTSerializable;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-public class Bank extends WorldSavedData
+public class Bank implements INBTSerializable<NBTBase>
 {
-    private static final String DATA_NAME = "enderlibre";
+    private GlobalData _globalData;
+    private Map<UUID,BankAccount> _accounts = new HashMap<>();
 
-    private Map<UUID,Integer> accounts = new HashMap<UUID,Integer>();
-
-    public Bank() {
-        super(DATA_NAME);
-    }
-
-    public Bank(String name) {
-        super(name);
+    public Bank(GlobalData gd) {
+        _globalData = gd;
     }
 
     public boolean existsAccount(UUID playerID) {
-        return accounts.containsKey(playerID);
+        return _accounts.containsKey(playerID);
     }
 
     public void createAccount(UUID playerID, int startAmount) {
-        accounts.put(playerID, startAmount);
-        this.markDirty();
+        _accounts.put(playerID, new BankAccount(startAmount));
+        _globalData.markDirty();
     }
 
     public int get(UUID playerID) {
-        return accounts.get(playerID);
+        return _accounts.get(playerID).getMoney();
     }
 
     public void set(UUID playerID, int qty) {
-        accounts.put(playerID, qty);
-        this.markDirty();
+        _accounts.get(playerID).setMoney(qty);
+        _globalData.markDirty();
     }
 
     public void setAll(int qty) {
-        for(Map.Entry<UUID,Integer> entry : accounts.entrySet()) {
-            entry.setValue(qty);
+        for(Map.Entry<UUID,BankAccount> entry : _accounts.entrySet()) {
+            entry.getValue().setMoney(qty);
         }
-        this.markDirty();
+        _globalData.markDirty();
     }
 
     public void take(UUID playerID, int qty) {
-        accounts.put(playerID, accounts.get(playerID) - qty);
-        this.markDirty();
+        BankAccount acc = _accounts.get(playerID);
+        acc.setMoney(acc.getMoney() - qty);
+        _globalData.markDirty();
     }
 
     public void give(UUID playerID, int qty) {
-        accounts.put(playerID, accounts.get(playerID) + qty);
-        this.markDirty();
-    }
-
-
-    public static Bank getInstance(World world) {
-        MapStorage storage = world.getMapStorage();
-        Bank instance = (Bank) storage.getOrLoadData(Bank.class, DATA_NAME);
-
-        if (instance == null) {
-            instance = new Bank();
-            storage.setData(DATA_NAME, instance);
-        }
-        return instance;
-    }
-
-    /**
-     * reads in data from the NBTTagCompound into this MapDataBase
-     */
-    @Override
-    public void readFromNBT(NBTTagCompound nbt) {
-        NBTTagCompound accountsTag = nbt.getCompoundTag("bank");
-
-        for(String uuid : accountsTag.getKeySet()) {
-            accounts.put(UUID.fromString(uuid), accountsTag.getInteger(uuid));
-        }
+        BankAccount acc = _accounts.get(playerID);
+        acc.setMoney(acc.getMoney() + qty);
+        _globalData.markDirty();
     }
 
     @Override
-    public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
+    public NBTTagCompound serializeNBT() {
         NBTTagCompound accountsTag = new NBTTagCompound();
-        for (Map.Entry<UUID, Integer> entry : accounts.entrySet()) {
-            accountsTag.setInteger(entry.getKey().toString(), entry.getValue());
+        for (Map.Entry<UUID, BankAccount> entry : _accounts.entrySet()) {
+            accountsTag.setTag(entry.getKey().toString(), entry.getValue().serializeNBT());
         }
 
-        nbt.setTag("bank", accountsTag);
-        return nbt;
+        return accountsTag;
+    }
+
+    @Override
+    public void deserializeNBT(NBTBase nbt) {
+        NBTTagCompound accountsTag = (NBTTagCompound)nbt;
+
+        for(String playerId : accountsTag.getKeySet()) {
+            BankAccount account = new BankAccount();
+            account.deserializeNBT(accountsTag.getTag(playerId));
+            _accounts.put(UUID.fromString(playerId), account);
+        }
     }
 }

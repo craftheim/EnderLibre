@@ -1,11 +1,9 @@
 package craftheim.el.mod.common.events;
 
 import craftheim.el.mod.EnderLibre;
-import craftheim.el.mod.common.capabilities.CapabilityBank;
 import craftheim.el.mod.server.data.Bank;
+import craftheim.el.mod.server.data.GlobalData;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.World;
-import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent;
@@ -14,12 +12,12 @@ import java.util.UUID;
 
 @Mod.EventBusSubscriber(modid = "enderlibre")
 public class BankHandler {
-    public static final ResourceLocation LOCATION = new ResourceLocation(EnderLibre.ID, "bank");
+    public static final ResourceLocation LOCATION = new ResourceLocation(EnderLibre.MOD_ID, "bank");
 
     @SubscribeEvent
     public static void onPlayerLogin(PlayerEvent.PlayerLoggedInEvent event)
     {
-        Bank bank = Bank.getInstance(event.player.getEntityWorld());
+        Bank bank = GlobalData.getInstance(event.player.world).getBank();
         UUID id = event.player.getPersistentID();
         if(!bank.existsAccount(id))
             bank.createAccount(id, 15);
