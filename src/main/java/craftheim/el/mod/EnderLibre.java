@@ -1,8 +1,6 @@
 package craftheim.el.mod;
 
-import craftheim.el.mod.common.capabilities.Capabilities;
 import craftheim.el.mod.proxy.ServerProxy;
-import craftheim.el.mod.server.commands.CommandTest;
 import craftheim.el.mod.server.commands.CommandEnderLibre;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
