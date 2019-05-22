@@ -60,7 +60,7 @@ public class GlobalData extends WorldSavedData
     @Override
     public void readFromNBT(NBTTagCompound nbt) {
         _bank.deserializeNBT(nbt.getCompoundTag("bank"));
-        _market.deserializeNBT(nbt.getTagList("market", Constants.NBT.TAG_COMPOUND));
+        _market.deserializeNBT(nbt.getCompoundTag("market"));
     }
 }
 
