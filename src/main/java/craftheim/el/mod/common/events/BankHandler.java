@@ -10,7 +10,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 @Mod.EventBusSubscriber(modid = "enderlibre")
 public class BankHandler {
-    public static final ResourceLocation LOCATION = new ResourceLocation(EnderLibre.ID, "bank");
+    public static final ResourceLocation LOCATION = new ResourceLocation(EnderLibre.MOD_ID, "bank");
 
     @SubscribeEvent
     public static void attachCapability(AttachCapabilitiesEvent<World> event)
