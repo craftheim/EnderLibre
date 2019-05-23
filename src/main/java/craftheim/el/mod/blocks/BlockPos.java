@@ -1,10 +1,9 @@
 package craftheim.el.mod.blocks;
 
 import craftheim.el.mod.blocks.base.BlockBase;
-import net.minecraft.block.BlockLever;
+import craftheim.el.util.EnumOrientation;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
-import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
@@ -18,14 +17,14 @@ public class BlockPos extends BlockBase
 {
     private static final Double px = 1d / 16d;
     public static final AxisAlignedBB AABB = new AxisAlignedBB(4 * px, 0 * px, 2 * px, 12 * px, 5 * px, 14 * px);
-    //public static final PropertyDirection FACING = PropertyDirection.create("facing");
-    public static final PropertyEnum<BlockLever.EnumOrientation> FACING = PropertyEnum.<BlockLever.EnumOrientation>create("facing", BlockLever.EnumOrientation.class);
+    public static final PropertyEnum<EnumOrientation> FACING = PropertyEnum.<EnumOrientation>create("facing", EnumOrientation.class);
+
 
     public BlockPos(String name)
     {
         super(name, Material.CLOTH);
 
-        setDefaultState(blockState.getBaseState().withProperty(FACING, BlockLever.EnumOrientation.NORTH));
+        setDefaultState(blockState.getBaseState().withProperty(FACING, EnumOrientation.NORTH));
     }
 
     @Override
@@ -43,7 +42,7 @@ public class BlockPos extends BlockBase
 
     @Override
     public IBlockState getStateForPlacement(World worldIn, net.minecraft.util.math.BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer) {
-        return this.getDefaultState().withProperty(FACING, BlockLever.EnumOrientation.forFacings(facing, placer.getHorizontalFacing()));
+        return this.getDefaultState().withProperty(FACING, EnumOrientation.forFacings(facing, placer.getHorizontalFacing()));
     }
 
     @Override
@@ -53,8 +52,7 @@ public class BlockPos extends BlockBase
 
     @Override
     public IBlockState getStateFromMeta(int meta) {
-        //return this.getDefaultState().withProperty(FACING, EnumFacing.getFront(meta & 7));
-        return this.getDefaultState().withProperty(FACING, BlockLever.EnumOrientation.byMetadata(meta & 7));
+        return this.getDefaultState().withProperty(FACING, EnumOrientation.byMetadata(meta & 15));
     }
 
     @Override
