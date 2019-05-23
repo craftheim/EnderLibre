@@ -1,21 +1,25 @@
 {
-  "forge_marker": 1,
-  "defaults":
-  {
-    "model": "enderlibre:block_pos"
-  },
-  "variants":
-  {
-    "normal": [{}],
-    "facing": {
-      "down_z": {"z": 180, "y": 180},
-      "down_x": {"z": 180, "y": 90},
-      "up_z": {},
-      "up_x": {"y": 270},
-      "north": {"x": 90},
-      "south": {"x": 90, "y": 180},
-      "west": {"x": 90, "y": 270},
-      "east": {"x": 90, "y": 90}
+    "forge_marker": 1,
+    "defaults":
+    {
+        "model": "enderlibre:block_pos"
+    },
+    "variants":
+    {
+        "normal": [{}],
+        "facing": {
+            "down_tonorth": {"x": 180, "y": 180},
+            "down_tosouth": {"x": 180, "y": 0},
+            "down_towest": {"x": 180, "y": -90},
+            "down_toeast": {"x": 180, "y": 90},
+            "up_tonorth": {},
+            "up_tosouth": {"y": 180},
+            "up_towest": {"y": -90},
+            "up_toeast": {"y": 90},
+            "north": {"x": 90},
+            "south": {"x": 90, "y": 180},
+            "west": {"x": 90, "y": -90},
+            "east": {"x": 90, "y": 90}
+        }
     }
-  }
 }
