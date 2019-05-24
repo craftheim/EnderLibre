@@ -13,11 +13,21 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
+import javax.annotation.Nonnull;
+
 public class BlockPos extends BlockBase
 {
     private static final Double px = 1d / 16d;
-    public static final AxisAlignedBB AABB = new AxisAlignedBB(4 * px, 0 * px, 2 * px, 12 * px, 5 * px, 14 * px);
-    public static final PropertyEnum<EnumOrientation> FACING = PropertyEnum.<EnumOrientation>create("facing", EnumOrientation.class);
+    private static final AxisAlignedBB AABB_UP_TONORTH = new AxisAlignedBB(4 * px, 0 * px, 2 * px, 12 * px, 5 * px, 14 * px);
+    private static final AxisAlignedBB AABB_UP_TOEAST = new AxisAlignedBB(2 * px, 0 * px, 4 * px, 14 * px, 5 * px, 12 * px);
+    private static final AxisAlignedBB AABB_DOWN_TONORTH = new AxisAlignedBB(4 * px, 16 * px, 2 * px, 12 * px, 11 * px, 14 * px);
+    private static final AxisAlignedBB AABB_DOWN_TOEAST = new AxisAlignedBB(2 * px, 16 * px, 4 * px, 14 * px, 11 * px, 12 * px);
+    private static final AxisAlignedBB AABB_NORTH = new AxisAlignedBB(4 * px, 2 * px, 16 * px, 12 * px, 14 * px, 11 * px);
+    private static final AxisAlignedBB AABB_SOUTH = new AxisAlignedBB(4 * px, 2 * px, 0 * px, 12 * px, 14 * px, 5 * px);
+    private static final AxisAlignedBB AABB_WEST = new AxisAlignedBB(16 * px, 2 * px, 4 * px, 11 * px, 14 * px, 12 * px);
+    private static final AxisAlignedBB AABB_EAST = new AxisAlignedBB(0 * px, 2 * px, 4 * px, 5 * px, 14 * px, 12 * px);
+
+    private static final PropertyEnum<EnumOrientation> FACING = PropertyEnum.<EnumOrientation>create("facing", EnumOrientation.class);
 
 
     public BlockPos(String name)
@@ -34,10 +44,32 @@ public class BlockPos extends BlockBase
     public boolean isFullCube(IBlockState state) { return false; }
 
     @Override
-    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, net.minecraft.util.math.BlockPos pos)
+    public @Nonnull AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, net.minecraft.util.math.BlockPos pos)
     {
-        return AABB;
-
+        switch( state.getValue(FACING) )
+        {
+            case UP_TONORTH:
+            case UP_TOSOUTH:
+            default:
+                return AABB_UP_TONORTH;
+            case UP_TOEAST:
+            case UP_TOWEST:
+                return AABB_UP_TOEAST;
+            case DOWN_TONORTH:
+            case DOWN_TOSOUTH:
+                return AABB_DOWN_TONORTH;
+            case DOWN_TOEAST:
+            case DOWN_TOWEST:
+                return AABB_DOWN_TOEAST;
+            case NORTH:
+                return AABB_NORTH;
+            case SOUTH:
+                return AABB_SOUTH;
+            case WEST:
+                return AABB_WEST;
+            case EAST:
+                return AABB_EAST;
+        }
     }
 
     @Override
