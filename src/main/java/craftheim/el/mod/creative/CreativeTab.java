@@ -10,6 +10,8 @@ import net.minecraft.util.NonNullList;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+public class CreativeTab extends CreativeTabs {
+
     public static final CreativeTab INSTANCE = new CreativeTab();
     private NonNullList<ItemStack> list;
 
