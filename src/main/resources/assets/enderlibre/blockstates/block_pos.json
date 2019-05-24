@@ -7,6 +7,7 @@
     "variants":
     {
         "normal": [{}],
+        "inventory": [{}],
         "facing": {
             "down_tonorth": {"x": 180, "y": 180},
             "down_tosouth": {"x": 180, "y": 0},
@@ -20,6 +21,14 @@
             "south": {"x": 90, "y": 180},
             "west": {"x": 90, "y": -90},
             "east": {"x": 90, "y": 90}
+        },
+        "enabled": {
+            "false": {},
+            "true": {
+                "textures": {
+                    "screen_toggle": "enderlibre:blocks/models/model_pos_screen_on"
+                }
+            }
         }
     }
 }

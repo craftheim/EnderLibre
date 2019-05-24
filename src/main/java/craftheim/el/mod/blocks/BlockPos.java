@@ -1,19 +1,24 @@
 package craftheim.el.mod.blocks;
 
 import craftheim.el.mod.blocks.base.BlockBase;
+import craftheim.el.mod.tiles.TileEntityPos;
 import craftheim.el.util.EnumOrientation;
+import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
+import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 public class BlockPos extends BlockBase
 {
@@ -28,6 +33,7 @@ public class BlockPos extends BlockBase
     private static final AxisAlignedBB AABB_EAST = new AxisAlignedBB(0 * px, 2 * px, 4 * px, 5 * px, 14 * px, 12 * px);
 
     private static final PropertyEnum<EnumOrientation> FACING = PropertyEnum.<EnumOrientation>create("facing", EnumOrientation.class);
+    public static final PropertyBool ENABLED = PropertyBool.create("enabled");
 
 
     public BlockPos(String name)
@@ -42,6 +48,44 @@ public class BlockPos extends BlockBase
 
     @Override
     public boolean isFullCube(IBlockState state) { return false; }
+
+    @Override
+    public boolean hasTileEntity(IBlockState state) {
+        return true;
+    }
+
+    @Nullable
+    @Override
+    public TileEntity createTileEntity(World world, IBlockState state) {
+        return new TileEntityPos();
+    }
+
+    public TileEntityPos getTileEntity(IBlockAccess world, net.minecraft.util.math.BlockPos pos) {
+        return (TileEntityPos) world.getTileEntity(pos);
+    }
+
+    public Boolean getEnabled(IBlockAccess world, net.minecraft.util.math.BlockPos pos) {
+        final TileEntityPos tileEntity = getTileEntity(world, pos);
+        return tileEntity != null ? tileEntity.getEnabled() : false;
+    }
+
+    public void setEnabled(IBlockAccess world, net.minecraft.util.math.BlockPos pos, Boolean enabled) {
+        final TileEntityPos tileEntity = getTileEntity(world, pos);
+        if (tileEntity != null) {
+            tileEntity.setEnabled(enabled);
+        }
+    }
+
+    @Override
+    public void neighborChanged(IBlockState state, World worldIn, net.minecraft.util.math.BlockPos pos, Block blockIn, net.minecraft.util.math.BlockPos fromPos) {
+        int powered = worldIn.isBlockIndirectlyGettingPowered(pos);
+        setEnabled(worldIn, pos, powered > 0);
+    }
+
+    @Override
+    public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, net.minecraft.util.math.BlockPos pos) {
+        return state.withProperty(ENABLED, getEnabled(worldIn, pos));
+    }
 
     @Override
     public @Nonnull AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, net.minecraft.util.math.BlockPos pos)
@@ -79,7 +123,7 @@ public class BlockPos extends BlockBase
 
     @Override
     protected BlockStateContainer createBlockState() {
-        return new BlockStateContainer(this, new IProperty[] {FACING});
+        return new BlockStateContainer(this, new IProperty[] {FACING, ENABLED});
     }
 
     @Override
