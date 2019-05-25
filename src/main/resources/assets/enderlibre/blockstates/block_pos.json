@@ -2,7 +2,10 @@
     "forge_marker": 1,
     "defaults":
     {
-        "model": "enderlibre:block_pos"
+        "model": "enderlibre:block_pos",
+        "textures": {
+            "screen_toggle": "enderlibre:blocks/models/model_pos_screen_off"
+        }
     },
     "variants":
     {
