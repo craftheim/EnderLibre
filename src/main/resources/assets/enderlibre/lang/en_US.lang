@@ -4,5 +4,6 @@ itemGroup.enderlibre=EnderLibre
 tile.block_pos.name=PoS
 
 #Items
+item.item_credit_card.name=Credit Card
 
 #GUI

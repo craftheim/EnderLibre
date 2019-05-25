@@ -9,6 +9,8 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 @Mod(modid = EnderLibre.MOD_ID, name = EnderLibre.MOD_NAME, version = EnderLibre.VERSION)
 public class EnderLibre {
@@ -18,6 +20,7 @@ public class EnderLibre {
 
     @Mod.Instance
     public static EnderLibre instance;
+    public static final Logger LOGGER = LogManager.getLogger(MOD_NAME);
 
     @SidedProxy(clientSide = "craftheim.el.mod.proxy.ClientProxy", serverSide = "craftheim.el.mod.proxy.ServerProxy")
     public static ServerProxy PROXY;

@@ -2,6 +2,7 @@ package craftheim.el.mod.creative;
 
 import craftheim.el.mod.EnderLibre;
 import craftheim.el.mod.blocks.InitBlocks;
+import craftheim.el.mod.items.InitItems;
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
@@ -21,7 +22,7 @@ public class CreativeTab extends CreativeTabs {
 
     @Override
     public ItemStack getTabIconItem() {
-        return new ItemStack(InitBlocks.blockPos);
+        return new ItemStack(InitItems.itemCreditCard);
     }
 
     @Override
@@ -30,6 +31,7 @@ public class CreativeTab extends CreativeTabs {
         this.list = list;
 
         this.add(InitBlocks.blockPos);
+        this.add(InitItems.itemCreditCard);
 
 
     }
