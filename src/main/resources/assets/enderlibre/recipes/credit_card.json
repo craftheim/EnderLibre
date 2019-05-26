@@ -1,0 +1,25 @@
+{
+    "result": {
+        "item": "enderlibre:item_credit_card"
+    },
+    "pattern": [
+        "GPP",
+        "III",
+        "RRR"
+    ],
+    "type": "forge:ore_shaped",
+    "key": {
+        "G": {
+            "item": "minecraft:gold_ingot"
+        },
+        "P": {
+            "item": "minecraft:paper"
+        },
+        "I": {
+            "item": "minecraft:iron_ingot"
+        },
+        "R": {
+            "item": "minecraft:redstone"
+        }
+    }
+}

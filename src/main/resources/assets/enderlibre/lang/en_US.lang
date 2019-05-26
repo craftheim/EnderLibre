@@ -7,3 +7,6 @@ tile.block_pos.name=PoS
 item.item_credit_card.name=Credit Card
 
 #GUI
+
+#Tooltips
+tooltip.credit_card.signature=Authorized Signature
