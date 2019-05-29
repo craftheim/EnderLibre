@@ -13,8 +13,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.Optional;
 
-import java.util.UUID;
-
 public class TileEntityPos extends TileEntityOCComponent {
     private boolean enabled = false;
 

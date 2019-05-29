@@ -43,7 +43,7 @@ repositories {
 def openComputersVersion = "MC1.12.2-1.7.+"
 
 dependencies {
-    provided "li.cil.oc:OpenComputers:${openComputersVersion}:api"
+    compile "li.cil.oc:OpenComputers:${openComputersVersion}:api"
     // you may put jars on which you depend on in ./libs
     // or you may define them like so..
     //compile "some.group:artifact:version:classifier"

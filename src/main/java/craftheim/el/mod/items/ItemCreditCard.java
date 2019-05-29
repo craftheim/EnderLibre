@@ -1,6 +1,5 @@
 package craftheim.el.mod.items;
 
-import craftheim.el.mod.EnderLibre;
 import craftheim.el.mod.items.base.ItemBase;
 import craftheim.el.mod.server.data.GlobalData;
 import net.minecraft.client.resources.I18n;

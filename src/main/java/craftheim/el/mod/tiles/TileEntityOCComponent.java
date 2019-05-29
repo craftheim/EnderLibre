@@ -1,6 +1,5 @@
 package craftheim.el.mod.tiles;
 
-import craftheim.el.mod.EnderLibre;
 import li.cil.oc.api.API;
 import li.cil.oc.api.network.*;
 import net.minecraft.tileentity.TileEntity;
