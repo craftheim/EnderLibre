@@ -1,25 +1,35 @@
 package craftheim.el.mod.tiles;
 
+import javax.annotation.Nullable;
+
+import li.cil.oc.api.machine.Arguments;
+import li.cil.oc.api.machine.Callback;
+import li.cil.oc.api.machine.Context;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.common.Optional;
 
-import javax.annotation.Nullable;
+import java.util.UUID;
 
-public class TileEntityPos extends TileEntity {
-    private Boolean enabled = false;
+public class TileEntityPos extends TileEntityOCComponent {
+    private boolean enabled = false;
 
-    public Boolean getEnabled() {
+    public TileEntityPos() {
+        createNode("pos");
+    }
+
+    public boolean getEnabled() {
         return enabled;
     }
 
     public void setEnabled(Boolean enable) {
         this.enabled = enable;
         markDirty();
+        notifyBlockUpdate();
     }
 
     @Override
@@ -41,12 +51,6 @@ public class TileEntityPos extends TileEntity {
     }
 
     @Override
-    public void markDirty() {
-        super.markDirty();
-        notifyBlockUpdate();
-    }
-
-    @Override
     public NBTTagCompound getUpdateTag() {
         return writeToNBT(new NBTTagCompound());
     }
@@ -64,7 +68,13 @@ public class TileEntityPos extends TileEntity {
     }
 
     @Override
-    public boolean shouldRefresh(World world, BlockPos pos, IBlockState oldState, IBlockState newSate) {
-        return oldState.getBlock() != newSate.getBlock();
+    public boolean shouldRefresh(World world, BlockPos pos, IBlockState oldState, IBlockState newState) {
+        return oldState.getBlock() != newState.getBlock();
+    }
+
+    @Callback
+    @Optional.Method(modid = "opencomputers")
+    public Object[] getMoney(Context cxt, Arguments arg) {
+        return new Object[]{5};
     }
 }
