@@ -12,7 +12,7 @@ import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-@Mod(modid = EnderLibre.MOD_ID, name = EnderLibre.MOD_NAME, version = EnderLibre.VERSION)
+@Mod(modid = EnderLibre.MOD_ID, name = EnderLibre.MOD_NAME, version = EnderLibre.VERSION, dependencies = "after:opencomputers")
 public class EnderLibre {
     public static final String MOD_ID = "enderlibre";
     public static final String MOD_NAME = "EnderLibre";

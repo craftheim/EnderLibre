@@ -33,7 +33,17 @@ minecraft {
     // makeObfSourceJar = false // an Srg named sources jar is made by default. uncomment this to disable.
 }
 
+repositories {
+    maven {
+        name = "OpenComputers"
+        url = "http://maven.cil.li/"
+    }
+}
+
+def openComputersVersion = "MC1.12.2-1.7.+"
+
 dependencies {
+    provided "li.cil.oc:OpenComputers:${openComputersVersion}:api"
     // you may put jars on which you depend on in ./libs
     // or you may define them like so..
     //compile "some.group:artifact:version:classifier"

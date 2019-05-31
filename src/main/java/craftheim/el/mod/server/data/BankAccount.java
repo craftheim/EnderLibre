@@ -1,7 +1,6 @@
 package craftheim.el.mod.server.data;
 
 import net.minecraft.nbt.NBTBase;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagInt;
 import net.minecraftforge.common.util.INBTSerializable;
 
