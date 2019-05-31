@@ -17,7 +17,7 @@ public class TileEntityPos extends TileEntityOCComponent {
     private boolean enabled = false;
 
     public TileEntityPos() {
-        createNode("pos");
+        super("pos");
     }
 
     public boolean getEnabled() {
