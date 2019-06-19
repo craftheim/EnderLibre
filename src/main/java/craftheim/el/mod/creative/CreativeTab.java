@@ -31,8 +31,8 @@ public class CreativeTab extends CreativeTabs {
         this.list = list;
 
         this.add(InitBlocks.blockPos);
+        this.add(InitBlocks.blockMarket);
         this.add(InitItems.itemCreditCard);
-
 
     }
 

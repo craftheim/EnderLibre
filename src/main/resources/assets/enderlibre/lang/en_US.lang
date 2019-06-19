@@ -2,6 +2,7 @@ itemGroup.enderlibre=EnderLibre
 
 #Blocks
 tile.block_pos.name=PoS
+tile.block_market.name=Market
 
 #Items
 item.item_credit_card.name=Credit Card
