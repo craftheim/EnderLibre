@@ -1,4 +1,4 @@
-package craftheim.el.mod.server.commands;
+package craftheim.el.mod.commands;
 
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.CommandException;

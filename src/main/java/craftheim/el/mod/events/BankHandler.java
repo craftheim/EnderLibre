@@ -1,8 +1,8 @@
-package craftheim.el.mod.common.events;
+package craftheim.el.mod.events;
 
 import craftheim.el.mod.EnderLibre;
-import craftheim.el.mod.server.data.Bank;
-import craftheim.el.mod.server.data.GlobalData;
+import craftheim.el.mod.data.Bank;
+import craftheim.el.mod.data.GlobalData;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;

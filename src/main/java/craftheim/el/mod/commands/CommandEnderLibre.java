@@ -1,9 +1,12 @@
-package craftheim.el.mod.server.commands;
+package craftheim.el.mod.commands;
 
 import com.mojang.authlib.GameProfile;
-import craftheim.el.mod.server.data.Bank;
-import craftheim.el.mod.server.data.GlobalData;
+import craftheim.el.mod.data.Bank;
+import craftheim.el.mod.data.GlobalData;
 import net.minecraft.command.ICommandSender;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraftforge.server.command.CommandTreeBase;
 
@@ -115,6 +118,15 @@ public class CommandEnderLibre extends CommandTreeBase {
 
             Bank bank = GlobalData.getInstance(server.getEntityWorld()).getBank();
             bank.setAll(amount);
+
+            sender.sendMessage(new TextComponentString("Pronto"));
+        }));
+
+        addSubcommand(new CommandSimple("test", "/enderlibre test", (server, sender, args) -> {
+            GlobalData.getInstance(server.getEntityWorld()).getMarket().clear();
+            GlobalData.getInstance(server.getEntityWorld()).getMarket().addSale(((EntityPlayer)sender).getPersistentID(), new ItemStack(Item.getByNameOrId("minecraft:chest"), 3), 10);
+            GlobalData.getInstance(server.getEntityWorld()).getMarket().addSale(((EntityPlayer)sender).getPersistentID(), new ItemStack(Item.getByNameOrId("minecraft:chest"), 15), 10);
+            GlobalData.getInstance(server.getEntityWorld()).getMarket().addSale(((EntityPlayer)sender).getPersistentID(), new ItemStack(Item.getByNameOrId("minecraft:iron_pickaxe"), 25), 10);
 
             sender.sendMessage(new TextComponentString("Pronto"));
         }));

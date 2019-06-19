@@ -1,7 +1,7 @@
 package craftheim.el.mod;
 
 import craftheim.el.mod.proxy.ServerProxy;
-import craftheim.el.mod.server.commands.CommandEnderLibre;
+import craftheim.el.mod.commands.CommandEnderLibre;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.SidedProxy;

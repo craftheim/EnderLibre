@@ -1,4 +1,4 @@
-package craftheim.el.mod.server.data;
+package craftheim.el.mod.data;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTBase;
@@ -24,15 +24,26 @@ public class Market implements INBTSerializable<NBTBase>
         _globalData.markDirty();
     }
 
+    public void clear() {
+        _sales.clear();
+        _globalData.markDirty();
+    }
+
     public void addSale(UUID playerId, ItemStack stack, int price) {
         ItemSale sale = new ItemSale(UUID.randomUUID(), playerId, stack, price);
-        _sales.put(sale.getId(), sale);
+        _sales.put(sale.getSaleId(), sale);
         _globalData.markDirty();
     }
 
     public void removeSale(UUID saleId) {
         _sales.remove(saleId);
         _globalData.markDirty();
+    }
+
+    public List<ItemSale> getSales() {
+        List<ItemSale> sales = new ArrayList<>(_sales.values());
+        sales.sort((ItemSale is1, ItemSale is2) -> is1.getSaleId().compareTo(is2.getSaleId()));
+        return sales;
     }
 
     public List<ItemSale> getPlayerSales(UUID playerId) {
@@ -68,7 +79,7 @@ public class Market implements INBTSerializable<NBTBase>
         for(String saleId : sales.getKeySet()) {
             ItemSale sale = new ItemSale(UUID.fromString(saleId));
             sale.deserializeNBT(sales.getTag(saleId));
-            _sales.put(sale.getId(), sale);
+            _sales.put(sale.getSaleId(), sale);
         }
 
         _count = marketTag.getInteger("count");

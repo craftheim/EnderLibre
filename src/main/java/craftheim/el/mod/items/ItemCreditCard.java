@@ -1,7 +1,7 @@
 package craftheim.el.mod.items;
 
 import craftheim.el.mod.items.base.ItemBase;
-import craftheim.el.mod.server.data.GlobalData;
+import craftheim.el.mod.data.GlobalData;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;

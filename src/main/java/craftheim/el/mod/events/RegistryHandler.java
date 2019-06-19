@@ -1,5 +1,6 @@
-package craftheim.el.mod;
+package craftheim.el.mod.events;
 
+import craftheim.el.mod.EnderLibre;
 import craftheim.el.mod.blocks.InitBlocks;
 import craftheim.el.mod.blocks.render.IHasModel;
 import craftheim.el.mod.items.InitItems;

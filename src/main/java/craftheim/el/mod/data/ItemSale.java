@@ -1,4 +1,4 @@
-package craftheim.el.mod.server.data;
+package craftheim.el.mod.data;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTBase;
@@ -24,9 +24,13 @@ public class ItemSale implements INBTSerializable<NBTBase> {
         _price = price;
     }
 
-    public UUID getId() { return _saleId; }
+    public UUID getSaleId() { return _saleId; }
 
     public UUID getSellerId() { return _sellerId; }
+
+    public ItemStack getItemStack() { return _stack; }
+
+    public int getPrice() { return _price; }
 
     @Override
     public NBTBase serializeNBT() {

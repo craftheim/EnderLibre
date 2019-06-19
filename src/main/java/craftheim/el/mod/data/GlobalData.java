@@ -1,4 +1,4 @@
-package craftheim.el.mod.server.data;
+package craftheim.el.mod.data;
 
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
