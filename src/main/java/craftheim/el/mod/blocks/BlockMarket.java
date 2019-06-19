@@ -1,6 +1,8 @@
 package craftheim.el.mod.blocks;
 
+import craftheim.el.mod.EnderLibre;
 import craftheim.el.mod.blocks.base.BlockBase;
+import craftheim.el.mod.gui.MarketGUI;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
@@ -33,6 +35,7 @@ public class BlockMarket extends BlockBase {
             return true;
         }
 
+        playerIn.openGui(EnderLibre.instance, MarketGUI.ID, worldIn, pos.getX(), pos.getY(), pos.getZ());
         return true;
     }
 
