@@ -6,7 +6,7 @@ import craftheim.el.mod.creative.CreativeTab;
 import craftheim.el.mod.items.InitItems;
 import net.minecraft.item.Item;
 
-public class ItemBase extends Item implements IHasModel {
+public abstract class ItemBase extends Item implements IHasModel {
 
     public ItemBase(String name) {
         setRegistryName(name);
